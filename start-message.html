@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เริ่มแล้วแสดงข้อความ</title>
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#1e293b;
+      --accent:#22d3ee;
+      --accent-2:#a78bfa;
+      --text:#e2e8f0;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 30% 20%, rgba(34,211,238,.15), transparent 60%),
+                  radial-gradient(1000px 700px at 70% 80%, rgba(167,139,250,.15), transparent 60%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+    }
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card{
+      width:min(680px, 90vw);
+      backdrop-filter: blur(8px);
+      background: rgba(15,23,42,.55);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+      text-align:center;
+    }
+    h1{
+      margin:0 0 14px;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing:.2px;
+      opacity:.9;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      padding:14px 22px;
+      border-radius:12px;
+      font-weight:700;
+      font-size: clamp(16px, 2.8vw, 18px);
+      color:#0b1220;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      cursor:pointer;
+      transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 24px rgba(130,160,255,.25), inset 0 0 1px rgba(255,255,255,.6);
+      margin-top: 20px;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(0); }
+
+    .msg{
+      display:none;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: .02em;
+      font-size: clamp(48px, 12vw, 160px);
+      margin: 4vh 0 2vh;
+      text-shadow:
+        0 2px 0 rgba(0,0,0,.25),
+        0 10px 30px rgba(0,0,0,.45);
+      background: linear-gradient(180deg, #fff, #dbeafe 60%, #93c5fd);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      opacity:0;
+      transform: scale(.5);
+      animation: slowPop 2s ease forwards;
+    }
+    @keyframes slowPop{
+      0%   { opacity:0; transform: scale(.5); }
+      100% { opacity:1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1 id="title">กดปุ่มเพื่อเริ่มต้น</h1>
+      <button id="startBtn" class="btn">เริ่มต้น</button>
+      <div id="message" class="msg">ควยฟลุ๊ค</div>
+      <button id="backBtn" class="btn" style="display:none;">ย้อนกลับ</button>
+    </div>
+  </div>
+
+  <script>
+    const btnStart = document.getElementById('startBtn');
+    const btnBack = document.getElementById('backBtn');
+    const msg = document.getElementById('message');
+    const title = document.getElementById('title');
+
+    btnStart.addEventListener('click', () => {
+      btnStart.style.display = 'none';
+      title.style.display = 'none';
+      msg.style.display = 'block';
+      btnBack.style.display = 'inline-block';
+    });
+
+    btnBack.addEventListener('click', () => {
+      msg.style.display = 'none';
+      btnBack.style.display = 'none';
+      title.style.display = 'block';
+      btnStart.style.display = 'inline-block';
+    });
+  </script>
+</body>
+</html>
